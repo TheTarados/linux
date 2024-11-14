@@ -416,7 +416,7 @@
 			};
 
 			spi_1: spi@10900000 {
-				compatible = "google,gs101-spi";
+				compatible = "google,gs101-spi", "samsung,exynosautov9-spi";
 				reg = <0x10900000 0x30>;
 				#address-cells = <1>;
 				#size-cells = <0>;
@@ -471,7 +471,7 @@
 			};
 
 			spi_2: spi@10910000 {
-				compatible = "google,gs101-spi";
+				compatible = "google,gs101-spi", "samsung,exynosautov9-spi";
 				reg = <0x10910000 0x30>;
 				#address-cells = <1>;
 				#size-cells = <0>;
@@ -526,7 +526,7 @@
 			};
 
 			spi_3: spi@10920000 {
-				compatible = "google,gs101-spi";
+				compatible = "google,gs101-spi", "samsung,exynosautov9-spi";
 				reg = <0x10920000 0x30>;
 				#address-cells = <1>;
 				#size-cells = <0>;
@@ -581,7 +581,7 @@
 			};
 
 			spi_4: spi@10930000 {
-				compatible = "google,gs101-spi";
+				compatible = "google,gs101-spi", "samsung,exynosautov9-spi";
 				reg = <0x10930000 0x30>;
 				#address-cells = <1>;
 				#size-cells = <0>;
@@ -636,7 +636,7 @@
 			};
 
 			spi_5: spi@10940000 {
-				compatible = "google,gs101-spi";
+				compatible = "google,gs101-spi", "samsung,exynosautov9-spi";
 				reg = <0x10940000 0x30>;
 				#address-cells = <1>;
 				#size-cells = <0>;
@@ -691,7 +691,7 @@
 			};
 
 			spi_6: spi@10950000 {
-				compatible = "google,gs101-spi";
+				compatible = "google,gs101-spi", "samsung,exynosautov9-spi";
 				reg = <0x10950000 0x30>;
 				#address-cells = <1>;
 				#size-cells = <0>;
@@ -746,7 +746,7 @@
 			};
 
 			spi_7: spi@10960000 {
-				compatible = "google,gs101-spi";
+				compatible = "google,gs101-spi", "samsung,exynosautov9-spi";
 				reg = <0x10960000 0x30>;
 				#address-cells = <1>;
 				#size-cells = <0>;
@@ -801,7 +801,7 @@
 			};
 
 			spi_8: spi@10970000 {
-				compatible = "google,gs101-spi";
+				compatible = "google,gs101-spi", "samsung,exynosautov9-spi";
 				reg = <0x10970000 0x30>;
 				#address-cells = <1>;
 				#size-cells = <0>;
@@ -883,7 +883,7 @@
 			};
 
 			spi_14: spi@10a20000 {
-				compatible = "google,gs101-spi";
+				compatible = "google,gs101-spi", "samsung,exynosautov9-spi";
 				reg = <0x10a20000 0x30>;
 				#address-cells = <1>;
 				#size-cells = <0>;
@@ -962,7 +962,7 @@
 			};
 
 			spi_0: spi@10d10000 {
-				compatible = "google,gs101-spi";
+				compatible = "google,gs101-spi", "samsung,exynosautov9-spi";
 				reg = <0x10d10000 0x30>;
 				#address-cells = <1>;
 				#size-cells = <0>;
@@ -1017,7 +1017,7 @@
 			};
 
 			spi_9: spi@10d20000 {
-				compatible = "google,gs101-spi";
+				compatible = "google,gs101-spi", "samsung,exynosautov9-spi";
 				reg = <0x10d20000 0x30>;
 				#address-cells = <1>;
 				#size-cells = <0>;
@@ -1072,7 +1072,7 @@
 			};
 
 			spi_10: spi@10d30000 {
-				compatible = "google,gs101-spi";
+				compatible = "google,gs101-spi", "samsung,exynosautov9-spi";
 				reg = <0x10d30000 0x30>;
 				#address-cells = <1>;
 				#size-cells = <0>;
@@ -1127,7 +1127,7 @@
 			};
 
 			spi_11: spi@10d40000 {
-				compatible = "google,gs101-spi";
+				compatible = "google,gs101-spi", "samsung,exynosautov9-spi";
 				reg = <0x10d40000 0x30>;
 				#address-cells = <1>;
 				#size-cells = <0>;
@@ -1182,7 +1182,7 @@
 			};
 
 			spi_12: spi@10d50000 {
-				compatible = "google,gs101-spi";
+				compatible = "google,gs101-spi", "samsung,exynosautov9-spi";
 				reg = <0x10d50000 0x30>;
 				#address-cells = <1>;
 				#size-cells = <0>;
@@ -1237,7 +1237,7 @@
 			};
 
 			spi_13: spi@10d60000 {
-				compatible = "google,gs101-spi";
+				compatible = "google,gs101-spi", "samsung,exynosautov9-spi";
 				reg = <0x10d60000 0x30>;
 				#address-cells = <1>;
 				#size-cells = <0>;
