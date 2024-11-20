@@ -1463,6 +1463,33 @@
 		};
 	};
 
+	pcie_phy: pcie-phy@15680000 {
+		compatible = "samsung,exynos5433-pcie-phy";
+		reg = <0x0 0x14550000 0x2000>;
+		samsung,pmu-syscon = <&pmu_system_controller>;
+		samsung,fsys-sysreg = <&sysreg_hsi2>;
+		#phy-cells = <0>;
+		status = "disabled";
+	};
+
+	pcie: pcie@15700000 {
+		compatible = "samsung,exynos5433-pcie";
+		reg = <0x0 0x14800000 0x301000>, <0x0 0x14520000 0x2000>,
+		      <0x0 0x0c000000 0x1000>;
+		reg-names = "dbi", "elbi", "config";
+		#address-cells = <3>;
+		#size-cells = <2>;
+		#interrupt-cells = <1>;
+		device_type = "pci";
+		interrupts = <GIC_SPI 509 IRQ_TYPE_LEVEL_HIGH 0>;
+		num-lanes = <2>;
+		num-viewport = <1>;
+		bus-range = <0x00 0xff>;
+		phys = <&pcie_phy>;
+		ranges = <0x82000000 0 0x60000000 0 0x60000000 0 0x0ff0000>;
+		status = "disabled";
+	};
+
 	timer {
 		compatible = "arm,armv8-timer";
 		interrupts =
@@ -1471,114 +1498,6 @@
 		   <GIC_PPI 11 (GIC_CPU_MASK_SIMPLE(8) | IRQ_TYPE_LEVEL_LOW) 0>,
 		   <GIC_PPI 10 (GIC_CPU_MASK_SIMPLE(8) | IRQ_TYPE_LEVEL_LOW) 0>;
 	};
-
-	/* From lineageOS kernel with slight mods */
-	s2mpu_hsi2: s2mpu@14480000 {
-		compatible = "google,gs101-s2mpu-v1";
-		#address-cells = <2>;
-		#size-cells = <1>;
-
-		reg = <0 0x14480000 0x10000>,
-		      <0 0x144F0000 0x10000>;
-
-		reg-names = "s2mpu", "ssmt";
-		/*
-		 * TODO: double check that 4 and 5 are correct stream ids.
-		 *   we know from that sid 6 is definitely UFS. the only
-		 *   options are 4, 5, 6, 7. so if we can be sure that 7 is
-		 *   MMC then we can be sure that 4 and 5 are pci-e.
-		 * two non-secure stream id's. bit 3 is set because these are
-		 * non-secure streams. bits 0 and 1 together identify one of
-		 * the 4 source ports. ports 0 and 1 are pci-e
-		 */
-		sids = <0x4 0x5>;
-		vid = <1>;
-
-		interrupts = <GIC_SPI 527 IRQ_TYPE_LEVEL_HIGH>;
-	};
-	
-	pcie_0: pcie@11920000 {
-		compatible = "samsung,exynos5433-pcie";
-		gpios = <&gph0 0 0x1 /* PERST */>;
-		reg = <0x0 0x11920000 0x2000   /* elbi base */
-		       0x0 0x11950000 0x2000   /* phy base */
-		       0x0 0x11820000 0x2000   /* sysreg base */
-		       0x0 0x11C00000 0x301000 /* DBI base */
-		       0x0 0x11940000 0x1000   /* phy pcs base */
-		       0x0 0x40FFE000 0x2000   /* configuration space */
-		       0x0 0x11900000 0x1000>; /* I/A space */
-		reg-names = "elbi", "phy", "sysreg", "dbi", "pcs", "config", "ia";
-		interrupts = <GIC_SPI 472 IRQ_TYPE_LEVEL_HIGH>;
-		interrupt-names = "msi";
-		#interrupt-cells = <1>;
-		samsung,syscon-phandle = <&pmu_system_controller>;
-		pinctrl-names = "active";
-		pinctrl-0 = <&pcie0_clkreq &pcie0_perst>;
-		#address-cells = <3>;
-		#size-cells = <2>;
-		device_type = "pci";
-		/* non-prefetchable memory */
-		ranges = <0x82000000 0 0x40000000 0 0x40000000 0 0xFF0000>;
-		ip-ver = <0x984500>;    /* gs101 */
-		num-lanes = <2>;
-		ch-num = <0>;
-		pcie-clk-num = <0>;
-		phy-clk-num = <0>;
-		pcie-pm-qos-int = <200000>;
-		use-cache-coherency = "false";
-		use-pcieon-sleep = "false";
-		use-msi = "false";
-		use-sicd = "false";
-		use-sysmmu = "false";
-		use-ia = "false";
-		use-l1ss = "false";
-		pmu-offset = <0x3ec0>;
-		max-link-speed = <3>;
-		status = "disabled";
-	};
-
-	pcie_1: pcie@14520000 {
-		compatible = "samsung,exynos5433-pcie";
-		gpios = <&gph2 0 0x1 /* PERST */>;
-		reg = <0x0 0x14520000 0x2000   /* elbi base */
-		       0x0 0x14550000 0x2000   /* phy base */
-		       0x0 0x14420000 0x2000   /* sysreg base */
-		       0x0 0x14800000 0x301000 /* DBI base */
-		       0x0 0x14540000 0x1000   /* phy pcs base */
-		       0x0 0x60FFE000 0x2000   /* configuration space */
-		       0x0 0x14500000 0x1000>; /* I/A space */
-		reg-names = "elbi", "phy", "sysreg", "dbi", "pcs", "config", "ia";
-		interrupts = <GIC_SPI 509 IRQ_TYPE_LEVEL_HIGH>;
-		#interrupt-cells = <1>;
-		interrupt-map-mask = <0 0 0 0>;
-		interrupt-map = <0 0 0 0 &gic 0 509 0x4>;
-		samsung,syscon-phandle = <&pmu_system_controller>;
-		pinctrl-names = "active";
-		pinctrl-0 = <&pcie1_clkreq &pcie1_perst>;
-		#address-cells = <3>;
-		#size-cells = <2>;
-		device_type = "pci";
-		/* non-prefetchable memory */
-		ranges = <0x82000000 0 0x60000000 0 0x60000000 0 0xFF0000>;
-		ip-ver = <0x984500>;    /* gs101 */
-		num-lanes = <2>;
-		ch-num = <1>;
-		pcie-clk-num = <0>;
-		phy-clk-num = <0>;
-		pcie-pm-qos-int = <200000>;
-		use-cache-coherency = "false";
-		use-pcieon-sleep = "false";
-		use-msi = "false";
-		use-sicd = "false";
-		use-sysmmu = "false";
-		use-ia = "false";
-		use-l1ss = "false";
-		pmu-offset = <0x3ec4>;
-		max-link-speed = <3>;
-		s2mpu = <&s2mpu_hsi2>;
-		status = "disabled";
-	};
-
 };
 
 #include "gs101-pinctrl.dtsi"

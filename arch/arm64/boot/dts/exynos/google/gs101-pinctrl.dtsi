@@ -202,6 +202,15 @@
 		interrupts = <GIC_SPI 65 IRQ_TYPE_LEVEL_HIGH 0>,
 			     <GIC_SPI 66 IRQ_TYPE_LEVEL_HIGH 0>;
 	};
+
+	wlan_host_wake: wlan_host_wake {
+		samsung,pins = "gpa7-0";
+		samsung,pin-function = <GS101_PIN_FUNC_EINT>;
+		samsung,pin-pud = <GS101_PIN_PULL_DOWN>;
+		samsung,pin-drv = <GS101_PIN_DRV_2_5_MA>;
+		samsung,pin-con-pdn = <GS101_PIN_PDN_PREV>;
+		samsung,pin-pud-pdn = <GS101_PIN_PULL_DOWN>;
+	};
 };
 
 &pinctrl_gsacore {
@@ -377,6 +386,16 @@
 		samsung,pin-drv = <GS101_PIN_DRV_10_MA>;
 		samsung,pin-con-pdn = <GS101_PIN_PDN_PREV>;
 	};
+
+	wlan_dev_wake: wlan_dev_wake {
+		samsung,pins = "gph2-5";
+		samsung,pin-function = <GS101_PIN_FUNC_INPUT>;
+		samsung,pin-pud = <GS101_PIN_PULL_DOWN>;
+		samsung,pin-drv = <GS101_PIN_DRV_2_5_MA>;
+		samsung,pin-con-pdn = <GS101_PIN_PDN_PREV>;
+		samsung,pin-pud-pdn = <GS101_PIN_PULL_DOWN>;
+	};
+
 };
 
 &pinctrl_peric0 {
@@ -970,6 +989,15 @@
 		samsung,pin-function = <GS101_PIN_FUNC_3>;
 		samsung,pin-pud = <GS101_PIN_PULL_NONE>;
 		samsung,pin-drv = <GS101_PIN_DRV_2_5_MA>;
+	};
+
+	pcie_wlanen: pcie_wlanen {
+		samsung,pins = "gpp14-2";
+		samsung,pin-function = <GS101_PIN_FUNC_OUTPUT>;
+		samsung,pin-pud = <GS101_PIN_PULL_NONE>;
+		samsung,pin-drv = <GS101_PIN_DRV_2_5_MA>;
+		samsung,pin-con-pdn = <GS101_PIN_PDN_PREV>;
+		samsung,pin-pud-pdn = <GS101_PIN_PULL_UP>;
 	};
 };
 
