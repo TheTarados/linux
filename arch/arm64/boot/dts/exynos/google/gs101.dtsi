@@ -1237,7 +1237,7 @@
 			};
 
 			spi_13: spi@10d60000 {
-				compatible = "google,gs101-spi", "samsung,exynosautov9-spi";
+				compatible = "google,gs101-spi", "samsung,gs101-spi";
 				reg = <0x10d60000 0x30>;
 				#address-cells = <1>;
 				#size-cells = <0>;
@@ -1475,7 +1475,7 @@
 	pcie: pcie@15700000 {
 		compatible = "samsung,exynos5433-pcie";
 		reg = <0x0 0x14800000 0x301000>, <0x0 0x14520000 0x2000>,
-		      <0x0 0x0c000000 0x1000>;
+		      <0x0 0x60FFE000 0x2000>;
 		reg-names = "dbi", "elbi", "config";
 		#address-cells = <3>;
 		#size-cells = <2>;
